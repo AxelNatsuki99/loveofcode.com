@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de San Valentín</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+        .card {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+        }
+        .card h2, .card p {
+            margin: 10px 0;
+        }
+        .heart {
+            color: red;
+            font-size: 2rem;
+            animation: float 1.5s infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        .image {
+            width: 80%;
+            border-radius: 10px;
+            display: block;
+            margin: auto;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: white;
+        }
+        .heart-emoji {
+            position: absolute;
+            font-size: 2rem;
+            user-select: none;
+            pointer-events: none;
+            animation: float 3s ease-in-out infinite;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-family: 'Pacifico', cursive; font-size: 3rem; color: #ff1493; animation: pulse 2s infinite;">
+        💌 ¡Feliz San Valentín! 💌
+    </h1>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <div class="card" id="card">
+        <h2 style="font-size: 1.2rem;">"Eres mi 'if' en un mundo de,<br> 'else' la condición que siempre se cumple." 💖</h2>
+        <p></p>
+        <img src="bo.jpeg" alt="Imagen de San Valentín" class="image">
+        <p>"Dada la inmensidad del tiempo y la inmensidad del universo,
+            es un placer inmenso para mí compartir un planeta y un
+            tiempo contigo❤️"</p>
+        <div class="heart">❤️</div>
+    </div>
+    <p class="footer" style="font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #ff1493; animation: pulse 2s infinite;">
+        Para Alexandra Condado💕
+    </p>
+    
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    </p>
+
+    <script>
+        const card = document.getElementById('card');
+
+        card.addEventListener('click', function() {
+            createHeartsAroundCard();
+        });
+
+        function createHeartsAroundCard() {
+            const cardRect = card.getBoundingClientRect();
+            const numHearts = 10; // Número de corazones a generar
+
+            for (let i = 0; i < numHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-emoji');
+                heart.innerHTML = '❤️';
+
+                // Posiciones aleatorias alrededor de la tarjeta
+                const angle = Math.random() * 2 * Math.PI; // Ángulo aleatorio
+                const distance = 150 + Math.random() * 50; // Distancia aleatoria
+                const x = cardRect.left + cardRect.width / 2 + Math.cos(angle) * distance;
+                const y = cardRect.top + cardRect.height / 2 + Math.sin(angle) * distance;
+
+                heart.style.left = `${x}px`;
+                heart.style.top = `${y}px`;
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
