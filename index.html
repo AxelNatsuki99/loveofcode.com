@@ -3,132 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta de San Valentín</title>
+    <title>Despedida para Moni</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background: linear-gradient(to bottom, #ff9a9e, #fecfef);
-            font-family: 'Pacifico', cursive;
+            font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
+            background-color: #ffdde1;
+            padding: 50px;
             overflow: hidden;
-        }
-        .card {
             position: relative;
-            width: 300px;
-            height: 400px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            cursor: pointer;
         }
-        .card h2, .card p {
-            margin: 10px 0;
+        .message {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            animation: fadeIn 2s ease-in-out;
         }
         .heart {
             color: red;
-            font-size: 2rem;
-            animation: float 1.5s infinite;
+            font-size: 24px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .heart-float {
+            position: absolute;
+            font-size: 24px;
+            color: red;
+            animation: float 5s linear infinite;
         }
         @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
+            0% {
+                transform: translateY(100vh) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(0.5);
+                opacity: 0;
+            }
         }
-        .image {
-            width: 80%;
-            border-radius: 10px;
-            display: block;
-            margin: auto;
-        }
-        .footer {
+        button {
             margin-top: 20px;
-            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            background-color: #ff5e78;
             color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
-        .heart-emoji {
-            position: absolute;
-            font-size: 2rem;
-            user-select: none;
-            pointer-events: none;
-            animation: float 3s ease-in-out infinite;
-            color: red;
+        button:hover {
+            background-color: #ff2e50;
         }
     </style>
 </head>
 <body>
-    <h1 style="font-family: 'Pacifico', cursive; font-size: 3rem; color: #ff1493; animation: pulse 2s infinite;">
-        💌 ¡Feliz San Valentín! 💌
-    </h1>
-    
-    <style>
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
-    <div class="card" id="card">
-        <h2 style="font-size: 1.2rem;">"Eres mi 'if' en un mundo de,<br> 'else' la condición que siempre se cumple." 💖</h2>
-        <p></p>
-        <img src="bo.jpeg" alt="Imagen de San Valentín" class="image">
-        <p>"Dada la inmensidad del tiempo y la inmensidad del universo,
-            es un placer inmenso para mí compartir un planeta y un
-            tiempo contigo❤️"</p>
-        <div class="heart">❤️</div>
+    <div class="message">
+        <h2>Querida Moni,</h2>
+        <p>Hoy nos toca decir adiós, pero no es un adiós definitivo, sino un “hasta pronto”. Tu alegría, tu esencia y todo lo que compartimos quedará siempre en nuestros corazones.</p>
+        <p>Gracias por cada risa, cada momento y cada enseñanza.</p>
+        <p>Que la vida te lleve por caminos llenos de amor y éxito. No importa la distancia, siempre habrá un lugar para ti en nuestros recuerdos y en nuestros corazones.</p>
+        <h3>¡Nos vemos pronto, Moni! <span class="heart">❤</span></h3>
+        <button onclick="sendLove()">Enviar amor ❤</button>
     </div>
-    <p class="footer" style="font-family: 'Pacifico', cursive; font-size: 1.5rem; color: #ff1493; animation: pulse 2s infinite;">
-        Para Alexandra Condado💕
-    </p>
     
-    <style>
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
-    </p>
-
     <script>
-        const card = document.getElementById('card');
-
-        card.addEventListener('click', function() {
-            createHeartsAroundCard();
-        });
-
-        function createHeartsAroundCard() {
-            const cardRect = card.getBoundingClientRect();
-            const numHearts = 10; // Número de corazones a generar
-
-            for (let i = 0; i < numHearts; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart-emoji');
-                heart.innerHTML = '❤️';
-
-                // Posiciones aleatorias alrededor de la tarjeta
-                const angle = Math.random() * 2 * Math.PI; // Ángulo aleatorio
-                const distance = 150 + Math.random() * 50; // Distancia aleatoria
-                const x = cardRect.left + cardRect.width / 2 + Math.cos(angle) * distance;
-                const y = cardRect.top + cardRect.height / 2 + Math.sin(angle) * distance;
-
-                heart.style.left = `${x}px`;
-                heart.style.top = `${y}px`;
-                document.body.appendChild(heart);
-
-                setTimeout(() => {
-                    heart.remove();
-                }, 3000);
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤";
+            heart.classList.add("heart-float");
+            document.body.appendChild(heart);
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            heart.style.fontSize = Math.random() * 20 + 10 + "px";
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        
+        function sendLove() {
+            // Crear corazones flotantes
+            for (let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 200);
             }
+            
+            // Abrir una nueva ventana con la imagen de sorpresa
+            const newWindow = window.open("", "_blank", "width=600,height=400");
+            newWindow.document.write('<html><head><title>Sorpresa</title></head><body style="text-align:center;">');
+            newWindow.document.write('<h1>¡Sorpresa!</h1>');
+            newWindow.document.write('<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSo7-n3i4ozalW-D_kGWM-M34z5eCUv5vyYA&s" alt="Sorpresa" style="max-width: 90%; border-radius: 10px;">');
+            newWindow.document.write('</body></html>');
         }
     </script>
 </body>
